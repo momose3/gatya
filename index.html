@@ -1,0 +1,106 @@
+</> HTML
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>キラキラ☆ガチャ</title>
+<style>
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: linear-gradient(135deg, #ff9de2, #7dd3fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background: rgba(255,255,255,0.9);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: linear-gradient(90deg, gold, orange);
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.result {
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rainbow {
+    animation: rainbow 1s infinite;
+}
+
+@keyframes rainbow {
+    0% { color: red; }
+    20% { color: orange; }
+    40% { color: yellow; }
+    60% { color: green; }
+    80% { color: blue; }
+    100% { color: purple; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>✨キラキラ☆ガチャ✨</h1>
+    <button onclick="drawGacha()">ガチャを引く！</button>
+    <div class="result" id="result">ここに結果が出るよ♪</div>
+</div>
+
+<script>
+function drawGacha() {
+    const resultDiv = document.getElementById("result");
+    resultDiv.classList.remove("rainbow");
+    resultDiv.textContent = "演出中...✨";
+
+    setTimeout(() => {
+        const rand = Math.random();
+        let resultText = "";
+
+        if (rand < 0.05) {
+            resultText = "🌈 SSR 超激レアキャラ！！";
+            resultDiv.classList.add("rainbow");
+        } else if (rand < 0.20) {
+            resultText = "✨ SR レアキャラ！";
+        } else if (rand < 0.60) {
+            resultText = "⭐ R キャラ";
+        } else {
+            resultText = "🙂 N キャラ";
+        }
+
+        resultDiv.textContent = resultText;
+    }, 1500);
+}
+</script>
+
+</body>
+</html>
